@@ -1,0 +1,9 @@
+{
+  "name": "pulsefetch",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "PulseFetch - All-in-One Social Media Downloader",
+  "scripts": {
+    "dev": "node dev-server.js"
+  }
+}

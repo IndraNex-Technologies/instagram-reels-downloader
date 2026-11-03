@@ -1,0 +1,15 @@
+name = "reel-save"
+compatibility_date = "2024-05-01"
+pages_build_output_dir = "public"
+
+[vars]
+ENVIRONMENT = "production"
+DEFAULT_RATE_LIMIT = "30"
+FIREBASE_PROJECT_ID = "reel-save-e4cae"
+FIREBASE_DATABASE_URL = "https://reel-save-e4cae-default-rtdb.firebaseio.com"
+FIREBASE_API_KEY = "AIzaSyAsUchsu2UkKuWtvwpkPeuPBip3nVd9VRI"
+FIREBASE_MEASUREMENT_ID = "G-TJNVRWQEMZ"
+UPI_GATEWAY_ID = "tsayush@fam"
+FAMPAY_API_KEY = "fam_67ac8f029fef464348033dec25ea7f314e999b76"
+FAMPAY_ENDPOINT = "https://api.fampay.in/v1/checkout"
+

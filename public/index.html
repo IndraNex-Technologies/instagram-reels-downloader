@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reel Save by IndraNex-Technologies - High Speed Downloader (Without Watermark VIP)</title>
+  <meta name="description" content="Reel Save by IndraNex-Technologies. Download Instagram Reels, Stories & Facebook Videos in HD without watermark. Lead Developer: Ayush Kumar Chaurasiya.">
+  <link rel="canonical" href="https://indranexadnet.dpdns.org/">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://indranexadnet.dpdns.org/">
+  <meta property="og:title" content="Reel Save by IndraNex-Technologies">
+  <meta property="og:description" content="Download Instagram Reels & Facebook Videos without watermark. Developed by Ayush Kumar Chaurasiya.">
+
+  <!-- Google Analytics (Firebase Measurement ID) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJNVRWQEMZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TJNVRWQEMZ');
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar with VIP Status and Telegram -->
+  <div style="background: linear-gradient(90deg, #3b0764, #6b21a8, #4338ca); color: #fff; font-size: 0.85rem; padding: 8px 0;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="background: #22c55e; width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+        <span><strong>IndraNex-Technologies</strong> Official Platform</span>
+        <span id="vipBadgeStatus" style="margin-left: 8px;"></span>
+      </div>
+
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button id="openTrialBtn" style="background: #10b981; border: none; color: #fff; padding: 4px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+          <i class="fas fa-gift"></i> Claim 1-Hour Free VIP
+        </button>
+        <a href="https://t.me/Tsayush_07" target="_blank" rel="noopener noreferrer" style="color: #67e8f9; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 5px;">
+          <i class="fab fa-telegram-plane"></i> Support: @Tsayush_07
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-content">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">
+          <i class="fas fa-play-circle"></i>
+        </div>
+        <div style="display: flex; flex-direction: column; line-height: 1.1;">
+          <span class="brand-name" style="font-size: 1.4rem;">Reel Save</span>
+          <span style="font-size: 0.65rem; color: var(--primary); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">by IndraNex-Technologies</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/instagram-downloader.html">Instagram</a></li>
+          <li><a href="/facebook-downloader.html">Facebook</a></li>
+          <li>
+            <button id="openVipBtn" style="background: linear-gradient(135deg, #ec4899, #7c3aed); border: none; color: #fff; padding: 7px 16px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(236,72,153,0.35);">
+              <i class="fas fa-crown"></i> VIP Plans (₹9 - ₹999)
+            </button>
+          </li>
+          <li><a href="https://t.me/Tsayush_07" target="_blank" rel="noopener noreferrer" style="color: #0088cc; font-weight: 600;"><i class="fab fa-telegram"></i> Telegram</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 1-Hour Free VIP Trial Modal (Lead Generation & Anti-Abuse) -->
+  <div id="trialModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #fff; max-width: 480px; width: 100%; border-radius: var(--radius-lg); padding: 30px; box-shadow: var(--shadow-xl); position: relative;">
+      <button id="closeTrialBtn" style="position: absolute; top: 16px; right: 16px; border: none; background: transparent; font-size: 1.3rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="width: 52px; height: 52px; background: #ecfdf5; color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 12px auto;">
+          <i class="fas fa-gift"></i>
+        </div>
+        <h3 style="font-size: 1.45rem;">Get 1-Hour Free VIP Access</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Experience Without-Watermark downloads & ultra fast servers completely free for 1 hour!</p>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px; margin-bottom: 20px; font-size: 0.88rem;">
+        <div style="font-weight: 700; color: #0f172a; margin-bottom: 4px;">Exclusive Benefits Included:</div>
+        <ul style="padding-left: 20px; margin: 0; color: #475569; display: flex; flex-direction: column; gap: 4px;">
+          <li>✨ Download videos <strong>Without Watermark</strong></li>
+          <li>🚀 Direct 3x faster high-speed servers</li>
+          <li>🛡️ 100% Ad-Free experience</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 6px;">Enter your Email Address:</label>
+        <input type="email" id="trialEmailInput" class="input-field" placeholder="yourname@gmail.com" style="width: 100%; border: 1px solid var(--border); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.95rem;">
+        <small style="color: var(--text-muted); font-size: 0.78rem; display: block; margin-top: 4px;">
+          <i class="fas fa-lock"></i> 1 claim per email & network IP. We send your VIP Key & IndraNex product updates.
+        </small>
+      </div>
+
+      <button id="claimTrialBtn" class="btn-submit" style="margin: 0; padding: 12px; background: #10b981;">
+        Claim 1-Hour Free VIP Access
+      </button>
+
+      <div id="trialMessage" style="font-size: 0.88rem; margin-top: 12px; display: none; text-align: center; font-weight: 600;"></div>
+    </div>
+  </div>
+
+  <!-- Multi-Tier VIP Gateway Modal (1, 3, 6, 9, 12, 30, 45, 60, 90, 120, 365, Lifetime) -->
+  <div id="vipModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #fff; max-width: 680px; width: 100%; border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-xl); position: relative; max-height: 90vh; overflow-y: auto;">
+      <button id="closeVipModal" style="position: absolute; top: 16px; right: 16px; border: none; background: transparent; font-size: 1.3rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <span style="background: #fdf2f8; color: #ec4899; padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase;">FamPay & UPI Gateway</span>
+        <h3 style="font-size: 1.5rem; margin-top: 6px;">Select Your VIP Without-Watermark Pass</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Choose from 1-day pass up to Lifetime access. Instant unlock on payment.</p>
+      </div>
+
+      <!-- Pricing Plans Selector Grid -->
+      <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 10px;">Select Plan Duration:</div>
+      <div id="plansGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin-bottom: 20px;">
+        <!-- Dynamically rendered via pricing-plans.js -->
+      </div>
+
+      <!-- Payment Section for Active Plan -->
+      <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center;">
+        <div style="text-align: center;">
+          <div style="background: #fff; border: 2px dashed #cbd5e1; border-radius: 8px; padding: 8px; display: inline-block;">
+            <img id="upiQrImage" src="" alt="FamPay UPI QR" style="width: 160px; height: 160px; display: block;">
+          </div>
+          <div style="font-size: 0.8rem; margin-top: 6px; color: var(--text-muted);">Scan with any UPI App</div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">Selected VIP Plan:</div>
+          <div id="activePlanTitle" style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">1 Day Pass</div>
+          <div id="activePlanPrice" style="font-size: 1.7rem; font-weight: 900; color: #0f172a; margin-bottom: 12px;">₹9</div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <a id="payUpiBtn" href="" class="btn-submit" style="margin: 0; padding: 10px 16px; font-size: 0.9rem; background: #16a34a; justify-content: center;">
+              <i class="fas fa-wallet"></i> Pay via FamPay / UPI
+            </a>
+            <a href="https://t.me/Tsayush_07" target="_blank" rel="noopener noreferrer" style="background: #0088cc; color: #fff; text-decoration: none; padding: 8px 14px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; justify-content: center; gap: 6px;">
+              <i class="fab fa-telegram-plane"></i> Send Screenshot to @Tsayush_07
+            </a>
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">
+            UPI ID: <code style="font-weight: 700; color: var(--primary);">tsayush@fam</code> (Ayush Kumar Chaurasiya)
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Activation Section -->
+      <div style="border-top: 1px solid var(--border); padding-top: 16px; margin-top: 20px;">
+        <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Have a VIP Pass Key?</label>
+        <div style="display: flex; gap: 8px;">
+          <input type="text" id="vipKeyInput" class="input-field" placeholder="Enter VIP Key (e.g. VIP-XXXX or TRIAL-XXXX)" style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 0.9rem;">
+          <button id="redeemBtn" class="btn-submit" style="margin: 0; width: auto; padding: 8px 16px; font-size: 0.9rem;">Activate</button>
+        </div>
+        <div id="redeemMessage" style="font-size: 0.85rem; margin-top: 8px; display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero & Main Downloader Section -->
+  <main class="hero">
+    <div class="container">
+      <div class="hero-tag">
+        <i class="fas fa-bolt"></i> High-Speed Edge Engine • IndraNex-Technologies
+      </div>
+
+      <h1>
+        Reel Save <span class="hero-gradient">by IndraNex-Technologies</span>
+      </h1>
+      <p>
+        Save public Instagram Reels, Videos, Stories & Facebook Watch media in HD MP4 & JPG. 
+        Developed by <strong>Ayush Kumar Chaurasiya</strong>.
+      </p>
+
+      <!-- Platform Filter Tabs -->
+      <div class="platform-selector">
+        <button class="platform-btn active" data-platform="auto">
+          <i class="fas fa-layer-group"></i> Auto-Detect
+        </button>
+        <button class="platform-btn" data-platform="instagram">
+          <i class="fab fa-instagram"></i> Instagram
+        </button>
+        <button class="platform-btn" data-platform="facebook">
+          <i class="fab fa-facebook"></i> Facebook
+        </button>
+      </div>
+
+      <!-- Main Input Card -->
+      <div class="input-card">
+        <div class="input-group">
+          <i class="fas fa-link input-icon"></i>
+          <input 
+            type="text" 
+            id="mediaUrl" 
+            class="input-field" 
+            placeholder="Paste Instagram or Facebook link here..." 
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <div class="action-buttons">
+            <button type="button" id="pasteBtn" class="btn-paste" title="Paste from clipboard">
+              <i class="fas fa-paste"></i> Paste
+            </button>
+            <button type="button" id="clearBtn" class="btn-clear" style="display: none;" title="Clear input">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="button" id="submitBtn" class="btn-submit">
+          <i class="fas fa-arrow-circle-down"></i>
+          <span id="submitText">Download Media</span>
+        </button>
+
+        <div class="input-disclaimer">
+          <i class="fas fa-shield-alt"></i> 100% Free & Safe. Supports direct Without-Watermark VIP downloads.
+        </div>
+
+        <div id="alertBox" class="alert-box">
+          <i class="fas fa-info-circle"></i>
+          <div id="alertText"></div>
+        </div>
+
+        <div id="loadingSpinner" class="spinner"></div>
+      </div>
+
+      <!-- Result Card -->
+      <div id="resultCard" class="result-container">
+        <div class="result-header">
+          <div class="result-author">
+            <div class="author-avatar" id="authorAvatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div>
+              <div class="author-name" id="authorName">Creator Name</div>
+              <small style="color: var(--text-light);">Reel Save by IndraNex-Technologies</small>
+            </div>
+          </div>
+          <span id="mediaBadge" class="media-badge">Instagram • REEL</span>
+        </div>
+
+        <div class="result-body">
+          <div class="result-thumbnail-wrap">
+            <img id="mediaThumbnail" class="result-thumbnail" src="" alt="Media Preview">
+          </div>
+          <div class="result-details">
+            <div>
+              <p id="mediaCaption" class="result-caption"></p>
+            </div>
+            <div id="downloadActions" class="download-options"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google AdSense Container -->
+      <div class="ad-slot-wrapper">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-container" id="ad-slot-home-top">
+          <ins class="adsbygoogle"
+               style="display:block; width: 100%; height: 90px;"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="1234567890"
+               data-ad-format="horizontal"
+               data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive Steps & Guide -->
+  <section class="features-section" style="background: var(--bg-main); border-top: 1px solid var(--border);">
+    <div class="container">
+      <h2 class="section-title">How To Download Social Videos</h2>
+      <p class="section-desc">Follow 3 quick steps on your Android, iPhone or Desktop.</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-number">01</span>
+          <div class="feature-icon"><i class="fas fa-copy"></i></div>
+          <h4>1. Copy Link from App</h4>
+          <p>Tap "Share" on Instagram or Facebook and copy the link to clipboard.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-number">02</span>
+          <div class="feature-icon"><i class="fas fa-paste"></i></div>
+          <h4>2. Paste on Reel Save</h4>
+          <p>Tap "Paste" button in our search box and click "Download Media".</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-number">03</span>
+          <div class="feature-icon"><i class="fas fa-download"></i></div>
+          <h4>3. Save Without Watermark</h4>
+          <p>Select your resolution. VIP Supporters download clean files with no watermark!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 12px;">
+            <div class="brand-icon"><i class="fas fa-play-circle"></i></div>
+            <div style="display: flex; flex-direction: column;">
+              <span style="color: #fff; font-size: 1.25rem;">Reel Save</span>
+              <span style="color: #a78bfa; font-size: 0.75rem; font-weight: 700;">IndraNex-Technologies</span>
+            </div>
+          </div>
+          <p>
+            An official utility engineered by <strong>IndraNex-Technologies</strong>. Lead Developer: <strong>Ayush Kumar Chaurasiya</strong>. Providing clean, watermark-free public social media downloading.
+          </p>
+          <div style="margin-top: 14px;">
+            <a href="https://t.me/Tsayush_07" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+              <i class="fab fa-telegram"></i> Official Support: @Tsayush_07
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Downloaders</h5>
+          <ul class="footer-links">
+            <li><a href="/instagram-downloader.html">Instagram Reels</a></li>
+            <li><a href="/instagram-downloader.html">Instagram Photos</a></li>
+            <li><a href="/facebook-downloader.html">Facebook Videos</a></li>
+            <li><a href="/facebook-downloader.html">Facebook Reels</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>VIP & Developer</h5>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="document.getElementById('openVipBtn').click();"><i class="fas fa-crown" style="color: #ec4899;"></i> VIP Plans (₹9 - ₹999)</a></li>
+            <li><a href="javascript:void(0)" onclick="document.getElementById('openTrialBtn').click();"><i class="fas fa-gift" style="color: #10b981;"></i> Claim 1h Free VIP</a></li>
+            <li><a href="https://t.me/Tsayush_07" target="_blank"><i class="fab fa-telegram"></i> Telegram (@Tsayush_07)</a></li>
+            <li><a href="/about.html">About IndraNex</a></li>
+            <li><a href="/admin.html">Admin Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <ul class="footer-links">
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/disclaimer.html">Copyright Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 <strong>IndraNex-Technologies</strong>. Developed by <strong>Ayush Kumar Chaurasiya</strong>. All rights reserved.</div>
+        <div>Not affiliated with, endorsed by, or sponsored by Meta, Instagram, or Facebook.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
