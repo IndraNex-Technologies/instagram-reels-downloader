@@ -77,6 +77,10 @@ export class InstagramProvider extends MediaProvider {
           if (payload) {
             return this.formatUpstreamResponse(payload, shortcode);
           }
+        } else {
+          const errRes = await upstream.json().catch(() => null);
+          const errMsg = errRes?.message || `Upstream returned status ${upstream.status}`;
+          throw new Error(`Provider Error: ${errMsg}`);
         }
       } catch (e) {
         console.warn('Configured upstream Instagram provider failed, falling back to public embed extraction:', e.message);
