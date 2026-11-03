@@ -30,21 +30,38 @@ export class InstagramProvider extends MediaProvider {
     }
 
     // Step 1: If rapid/partner provider API key is configured in Worker environment
-    if (env.INSTAGRAM_PROVIDER_API_KEY && env.INSTAGRAM_PROVIDER_ENDPOINT) {
+    if (env.INSTAGRAM_PROVIDER_ENDPOINT) {
       try {
-        const upstream = await fetch(env.INSTAGRAM_PROVIDER_ENDPOINT, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${env.INSTAGRAM_PROVIDER_API_KEY}`
-          },
-          body: JSON.stringify({ url: cleanUrl.toString() })
-        });
+        const endpointUrl = new URL(env.INSTAGRAM_PROVIDER_ENDPOINT);
+        const isRapidApi = endpointUrl.host.includes('rapidapi.com');
+        const headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' };
+
+        if (env.INSTAGRAM_PROVIDER_API_KEY) {
+          if (isRapidApi) {
+            headers['X-RapidAPI-Key'] = env.INSTAGRAM_PROVIDER_API_KEY;
+            headers['X-RapidAPI-Host'] = endpointUrl.host;
+          } else {
+            headers['Authorization'] = `Bearer ${env.INSTAGRAM_PROVIDER_API_KEY}`;
+          }
+        }
+
+        let upstream;
+        if (isRapidApi) {
+          endpointUrl.searchParams.set('url', cleanUrl.toString());
+          upstream = await fetch(endpointUrl.toString(), { headers });
+        } else {
+          upstream = await fetch(env.INSTAGRAM_PROVIDER_ENDPOINT, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({ url: cleanUrl.toString() })
+          });
+        }
 
         if (upstream.ok) {
           const res = await upstream.json();
-          if (res && res.data) {
-            return this.formatUpstreamResponse(res.data, shortcode);
+          const payload = res.data || res.result || res;
+          if (payload) {
+            return this.formatUpstreamResponse(payload, shortcode);
           }
         }
       } catch (e) {
@@ -157,17 +174,32 @@ export class InstagramProvider extends MediaProvider {
   }
 
   formatUpstreamResponse(data, shortcode) {
+    const item = Array.isArray(data) ? data[0] : (data.result && Array.isArray(data.result) ? data.result[0] : (data.data || data));
+    const videoUrl = item.downloadUrl || item.video_url || item.url || item.download_link || (item.downloads && item.downloads[0]?.url) || '';
+    const thumbUrl = item.thumbnail || item.thumb || item.display_url || item.picture || '';
+    const caption = item.caption || item.description || item.title || '';
+    const author = item.author || (item.user && item.user.username) || 'Instagram Creator';
+
+    const downloads = item.downloads && Array.isArray(item.downloads) && item.downloads.length > 0
+      ? item.downloads
+      : (videoUrl ? [{
+          quality: 'Full HD 1080p',
+          format: 'MP4',
+          url: videoUrl,
+          filename: `PulseFetch_Instagram_${shortcode}.mp4`
+        }] : []);
+
     return {
       success: true,
       platform: 'instagram',
-      id: data.id || shortcode,
-      type: data.type || 'video',
-      title: data.caption ? data.caption.slice(0, 100) : 'Instagram Post',
-      caption: data.caption || '',
-      author: data.author || 'Instagram Creator',
-      thumbnail: data.thumbnail || '',
-      downloadUrl: data.downloadUrl || (data.downloads && data.downloads[0]?.url),
-      downloads: data.downloads || []
+      id: item.id || shortcode,
+      type: item.type || (videoUrl ? 'video' : 'image'),
+      title: item.title || (caption ? caption.slice(0, 100) : 'Instagram Reel'),
+      caption: caption || 'Instagram public media',
+      author: author,
+      thumbnail: thumbUrl || videoUrl,
+      downloadUrl: videoUrl || thumbUrl,
+      downloads: downloads
     };
   }
 
