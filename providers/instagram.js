@@ -47,8 +47,22 @@ export class InstagramProvider extends MediaProvider {
 
         let upstream;
         if (isRapidApi) {
-          endpointUrl.searchParams.set('url', cleanUrl.toString());
-          upstream = await fetch(endpointUrl.toString(), { headers });
+          if (endpointUrl.pathname.endsWith('.php') || endpointUrl.pathname.includes('download')) {
+            const formData = new FormData();
+            formData.append('url', cleanUrl.toString());
+            upstream = await fetch(endpointUrl.toString(), {
+              method: 'POST',
+              headers: {
+                'X-RapidAPI-Key': env.INSTAGRAM_PROVIDER_API_KEY,
+                'X-RapidAPI-Host': endpointUrl.host,
+                'Accept': 'application/json'
+              },
+              body: formData
+            });
+          } else {
+            endpointUrl.searchParams.set('url', cleanUrl.toString());
+            upstream = await fetch(endpointUrl.toString(), { headers });
+          }
         } else {
           upstream = await fetch(env.INSTAGRAM_PROVIDER_ENDPOINT, {
             method: 'POST',
