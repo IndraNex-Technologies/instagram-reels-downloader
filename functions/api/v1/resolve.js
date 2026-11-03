@@ -1,8 +1,8 @@
-import { validateAndSanitizeUrl, getSecurityHeaders } from '../../../../core/security.js';
-import { checkRateLimit } from '../../../../core/ratelimit.js';
-import { InstagramProvider } from '../../../../providers/instagram.js';
-import { FacebookProvider } from '../../../../providers/facebook.js';
-import { FirebaseClient } from '../../../../database/firebase.js';
+import { validateAndSanitizeUrl, getSecurityHeaders } from '../../_shared/core/security.js';
+import { checkRateLimit } from '../../_shared/core/ratelimit.js';
+import { InstagramProvider } from '../../_shared/providers/instagram.js';
+import { FacebookProvider } from '../../_shared/providers/facebook.js';
+import { FirebaseClient } from '../../_shared/database/firebase.js';
 
 export async function onRequestPost({ request, env }) {
   const headers = getSecurityHeaders();

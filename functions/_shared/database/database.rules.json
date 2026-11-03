@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "Downloader": {
+      ".read": false,
+      ".write": false,
+      "admins": {
+        ".indexOn": ["email", "role"]
+      },
+      "requests": {
+        ".indexOn": ["timestamp", "platform", "status"]
+      },
+      "systemLogs": {
+        ".indexOn": ["timestamp", "level"]
+      },
+      "blockedUsers": {
+        ".indexOn": ["blockedAt"]
+      }
+    }
+  }
+}

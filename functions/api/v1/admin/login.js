@@ -1,5 +1,5 @@
-import { getSecurityHeaders } from '../../../../../core/security.js';
-import { FirebaseClient } from '../../../../../database/firebase.js';
+import { getSecurityHeaders } from '../../../_shared/core/security.js';
+import { FirebaseClient } from '../../../_shared/database/firebase.js';
 
 // Native Web Crypto SHA-256 for worker runtime
 async function hashPassword(plainText, salt) {
@@ -37,14 +37,12 @@ export async function onRequestPost({ request, env }) {
       }), { status: 400, headers });
     }
 
-    // Default emergency env fallback credentials if database not yet initialized
     const adminUser = env.ADMIN_USERNAME || 'admin';
     const adminPass = env.ADMIN_PASSWORD || 'PulseFetch2026!Secure';
 
     let authenticated = false;
     let role = 'Super Admin';
 
-    // Verify against Firebase if configured
     const firebase = new FirebaseClient(env.FIREBASE_DATABASE_URL, env.FIREBASE_DATABASE_SECRET);
     if (firebase.isConfigured()) {
       try {
@@ -61,7 +59,6 @@ export async function onRequestPost({ request, env }) {
       }
     }
 
-    // Fallback to configured environment credentials
     if (!authenticated && username === adminUser && password === adminPass) {
       authenticated = true;
       role = 'Super Admin';
@@ -74,12 +71,11 @@ export async function onRequestPost({ request, env }) {
       }), { status: 401, headers });
     }
 
-    // Generate secure admin session token
     const tokenPayload = {
       username,
       role,
       issuedAt: Date.now(),
-      expiresAt: Date.now() + 86400000 // 24 hours
+      expiresAt: Date.now() + 86400000
     };
 
     const token = btoa(JSON.stringify(tokenPayload));

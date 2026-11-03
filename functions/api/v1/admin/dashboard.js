@@ -1,5 +1,5 @@
-import { getSecurityHeaders } from '../../../../../core/security.js';
-import { FirebaseClient } from '../../../../../database/firebase.js';
+import { getSecurityHeaders } from '../../../_shared/core/security.js';
+import { FirebaseClient } from '../../../_shared/database/firebase.js';
 
 function verifyToken(authHeader) {
   if (!authHeader || !authHeader.startsWith('Bearer ')) return null;

@@ -1,4 +1,4 @@
-import { getSecurityHeaders } from '../../../../core/security.js';
+import { getSecurityHeaders } from '../../_shared/core/security.js';
 
 export async function onRequestGet({ env }) {
   const headers = getSecurityHeaders();

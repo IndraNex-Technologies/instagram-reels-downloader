@@ -1,4 +1,4 @@
-import { validateAndSanitizeUrl, getSecurityHeaders } from '../../../../core/security.js';
+import { validateAndSanitizeUrl, getSecurityHeaders } from '../../_shared/core/security.js';
 
 export async function onRequestPost({ request }) {
   const headers = getSecurityHeaders();
