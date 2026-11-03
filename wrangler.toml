@@ -12,6 +12,6 @@ FIREBASE_MEASUREMENT_ID = "G-TJNVRWQEMZ"
 UPI_GATEWAY_ID = "tsayush@fam"
 FAMPAY_API_KEY = "fam_67ac8f029fef464348033dec25ea7f314e999b76"
 FAMPAY_ENDPOINT = "https://api.fampay.in/v1/checkout"
-INSTAGRAM_PROVIDER_ENDPOINT = "https://instagram-downloader51.p.rapidapi.com/download.php"
-INSTAGRAM_PROVIDER_API_KEY = "db638304e6msh46555cbef065c87p133f80jsn88d7ff0d43a5"
+INSTAGRAM_PROVIDER_ENDPOINT = "https://indranextechnologies.in/api.php"
+INSTAGRAM_PROVIDER_API_KEY = ""
 
