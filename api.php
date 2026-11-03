@@ -17,7 +17,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS
 
 // 0. Configuration: Optional Instagram Dummy Account Session ID
 // (If provided, bypasses Instagram restrictions 100% with high-definition media)
-$instagramSessionId = '';
+$instagramSessionId = '13448355818%3AaaZbTTAx4A00y6%3A24%3AAYmYsKlFwG2wFOC0SDq_BKGA1AxOn2xpeGcc5oBr2P4';
 
 // 1. Get input URL from GET, POST or JSON body
 $rawInput = file_get_contents('php://input');
