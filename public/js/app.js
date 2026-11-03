@@ -331,7 +331,13 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ url: rawUrl, platform: isInsta ? 'instagram' : 'facebook' })
       });
 
-      const data = await response.json();
+      let data;
+      const responseText = await response.text();
+      try {
+        data = JSON.parse(responseText);
+      } catch (e) {
+        throw new Error('Provider returned unexpected HTML/error. Please check your cPanel api.php configuration.');
+      }
       if (!response.ok || !data.success) {
         throw new Error(data.error?.message || 'Unable to fetch media from this link.');
       }
