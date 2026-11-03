@@ -15,6 +15,10 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS
     exit;
 }
 
+// 0. Configuration: Optional Instagram Dummy Account Session ID
+// (If provided, bypasses Instagram restrictions 100% with high-definition media)
+$instagramSessionId = '';
+
 // 1. Get input URL from GET, POST or JSON body
 $rawInput = file_get_contents('php://input');
 $jsonData = json_decode($rawInput, true);
@@ -46,7 +50,7 @@ if (!$isInstagram && !$isFacebook) {
 
 try {
     if ($isInstagram) {
-        $result = resolveInstagram($targetUrl);
+        $result = resolveInstagram($targetUrl, $instagramSessionId);
     } else {
         $result = resolveFacebook($targetUrl);
     }
@@ -67,7 +71,7 @@ try {
 /**
  * Resolves Instagram Reels, Posts, and Videos
  */
-function resolveInstagram($url) {
+function resolveInstagram($url, $sessionId = '') {
     // Extract shortcode
     preg_match('/\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)/', $url, $matches);
     $shortcode = isset($matches[1]) ? $matches[1] : '';
@@ -81,12 +85,17 @@ function resolveInstagram($url) {
     $caption = 'Instagram Media';
     $author = 'Instagram Creator';
 
-    // Strategy 1: Query Instagram GraphQL endpoint with Web App ID
+    // Strategy 1: GraphQL endpoint with Web App ID & optional session cookie
     $graphqlUrl = "https://www.instagram.com/graphql/query/?doc_id=8845758582119845&variables=" . urlencode(json_encode(['shortcode' => $shortcode]));
-    $response = fetchUrl($graphqlUrl, [
+    $headers = [
         'X-IG-App-ID: 936619743392459',
         'Accept: */*'
-    ]);
+    ];
+    if (!empty($sessionId)) {
+        $headers[] = 'Cookie: sessionid=' . trim($sessionId) . '; ds_user_id=1';
+    }
+
+    $response = fetchUrl($graphqlUrl, $headers);
 
     if (!empty($response)) {
         $json = json_decode($response, true);
@@ -261,6 +270,8 @@ function fetchUrl($url, $headers = [], $customUa = null) {
     curl_setopt($ch, CURLOPT_TIMEOUT, 15);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+    curl_setopt($ch, CURLOPT_ENCODING, '');
     curl_setopt($ch, CURLOPT_USERAGENT, $ua);
 
     $defaultHeaders = [
@@ -270,7 +281,18 @@ function fetchUrl($url, $headers = [], $customUa = null) {
 
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlErr = curl_error($ch);
     curl_close($ch);
+
+    if (isset($_GET['debug']) && $_GET['debug'] == 1) {
+        echo json_encode([
+            'debug_url' => $url,
+            'http_code' => $httpCode,
+            'curl_error' => $curlErr,
+            'response_len' => strlen($response ?: '')
+        ]);
+        exit;
+    }
 
     return ($httpCode >= 200 && $httpCode < 400) ? $response : null;
 }
